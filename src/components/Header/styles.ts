@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-
-
 export const HeaderContainer = styled.header`
   display:flex;
   justify-content:space-between;
-  padding: 2rem 0;
+  padding: 2rem 10rem;
 
   nav{
     display: flex;
@@ -14,13 +12,13 @@ export const HeaderContainer = styled.header`
     gap: 0.75rem;
     
     div{
-      background: ${props => props.theme["purple-light"]};
+      background: ${(props) => props.theme["purple-light"]};
       width: 9rem;
       height: 2.375rem;
 
       padding: 0.5rem;
       display: flex;
-      gap:0.25rem
+      gap:0.25rem;
       align-items:center;
       justify-content:center;
 
@@ -45,15 +43,15 @@ export const HeaderContainer = styled.header`
       background: ${(props) => props.theme["yellow-light"]};
 
       text-decoration:none;
-      color: ${props => props.theme["yellow-dark"]};
+      color: ${(props) => props.theme["yellow-dark"]};
       
       position: relative;
       span{
         position:absolute;
         top:-0.5rem;
         right:-0.25rem;
-        background: ${props => props.theme["yellow-dark"]};
-        color: ${props => props.theme.white};
+        background: ${(props) => props.theme["yellow-dark"]};
+        color: ${(props) => props.theme.white};
         display: flex;
         justify-content: center;
         align-items: center;
@@ -63,5 +61,12 @@ export const HeaderContainer = styled.header`
       }
       
     }
+
+
+    
   }
-`
+
+  @media (max-width: 768px) {
+    padding:2rem ; 
+  }
+`;

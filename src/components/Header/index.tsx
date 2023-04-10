@@ -15,7 +15,7 @@ export function Header() {
         </div>
         <NavLink to={"/checkout"}>
           <ShoppingCart weight="fill" size={22} />
-          {cartItemsNumber>0?<span>{cartItemsNumber}</span>:null}
+          {cartItemsNumber > 0 ? <span>{cartItemsNumber}</span> : null}
         </NavLink>
       </nav>
     </HeaderContainer>

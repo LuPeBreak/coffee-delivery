@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   *{
@@ -12,11 +12,11 @@ export const GlobalStyle = createGlobalStyle`
   }
   body{
     background:${({ theme }) => theme.background};
-    color: ${({ theme }) => theme["base-text"]};
+    color: ${({ theme }) => theme['base-text']};
     -webkit-font-smoothing:antialiased;
   }
   body,input,textarea,button{
-    color: ${({ theme }) => theme["base-text"]};
+    color: ${({ theme }) => theme['base-text']};
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     line-height: 1.3;
@@ -29,4 +29,4 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.3;
     font-size: 1.125rem ;
   }
-`;
+`

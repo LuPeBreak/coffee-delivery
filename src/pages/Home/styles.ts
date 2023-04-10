@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import homePresentationBackground from "../../assets/home-presentation-background.svg";
+import styled from 'styled-components'
+import homePresentationBackground from '../../assets/home-presentation-background.svg'
 
 export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
-  max-width:100% ;
-`;
+  max-width: 100%;
+`
 
 export const HomePresentationContainer = styled.div`
-  max-width:100% ;
+  max-width: 100%;
 
   display: flex;
   justify-content: space-between;
@@ -40,25 +40,25 @@ export const HomePresentationContainer = styled.div`
       width: 100%;
     }
   }
-`;
+`
 
 export const HomeInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 36.75rem ;
-  gap:1rem;
+  max-width: 36.75rem;
+  gap: 1rem;
 
   header {
     h1 {
       font-size: 3rem;
-      font-weight: 800 ;
-      color: ${(props) => props.theme["base-title"]};
+      font-weight: 800;
+      color: ${(props) => props.theme['base-title']};
     }
     h2 {
-      font-family: "Roboto";
+      font-family: 'Roboto';
       font-style: normal;
       font-weight: 400;
-      color: ${(props) => props.theme["base-subtitle"]};
+      color: ${(props) => props.theme['base-subtitle']};
       font-size: 1.25rem;
       margin-top: 1rem;
     }
@@ -69,7 +69,7 @@ export const HomeInfoContainer = styled.div`
   & > div {
     display: grid;
     grid-template-columns: auto auto;
-    gap: 1.25rem ;
+    gap: 1.25rem;
 
     & > span {
       font-size: 1rem;
@@ -79,30 +79,23 @@ export const HomeInfoContainer = styled.div`
 
       svg {
         border-radius: 50%;
-        padding: 0.5rem;align-self: start;
-        color:${props => props.theme.background}; ;
+        padding: 0.5rem;
+        align-self: start;
+        color: ${(props) => props.theme.background};
       }
 
-      &:nth-child(1) svg{
-        background-color: ${props => props.theme["yellow-dark"]};
+      &:nth-child(1) svg {
+        background-color: ${(props) => props.theme['yellow-dark']};
       }
-      &:nth-child(2) svg{
-        background-color: ${props => props.theme["base-text"]};
+      &:nth-child(2) svg {
+        background-color: ${(props) => props.theme['base-text']};
       }
-      &:nth-child(3) svg{
-        background-color: ${props => props.theme.yellow};
+      &:nth-child(3) svg {
+        background-color: ${(props) => props.theme.yellow};
       }
-      &:nth-child(4) svg{
-        background-color: ${props => props.theme.purple};
+      &:nth-child(4) svg {
+        background-color: ${(props) => props.theme.purple};
       }
     }
   }
-`;
-
-export const HomeProductsContainer = styled.div`
-  padding: 0 10rem;
-
-  @media (max-width: 768px) {
-    padding: 0 2rem;
-  }
-`;
+`

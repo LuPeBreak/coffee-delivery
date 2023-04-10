@@ -1,12 +1,11 @@
-import { Header } from "../../components/Header";
 import {
   HomeContainer,
   HomeInfoContainer,
   HomePresentationContainer,
-  HomeProductsContainer,
-} from "./styles";
-import homeImage from "../../assets/home-image.svg";
-import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
+} from './styles'
+import homeImage from '../../assets/home-image.svg'
+import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
+import { ProductsList } from './ProductsList'
 export function Home() {
   return (
     <HomeContainer>
@@ -40,7 +39,7 @@ export function Home() {
           <img src={homeImage} alt="Imagem de um cafe e graos" />
         </div>
       </HomePresentationContainer>
-      <HomeProductsContainer>products</HomeProductsContainer>
+      <ProductsList />
     </HomeContainer>
-  );
+  )
 }

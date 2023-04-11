@@ -19,14 +19,14 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme['base-text']};
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    line-height: 1.3;
+    line-height: 130%;
     font-size: 0.875rem;
   }
 
   h1,h2,h3,h4,h5{
     font-family: 'Baloo 2', cursive;
     font-weight: 700 ;
-    line-height: 1.3;
+    line-height: 130%;
     font-size: 1.125rem ;
   }
 `

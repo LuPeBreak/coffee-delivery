@@ -5,9 +5,13 @@ import { productsList } from './productsList'
 export function ProductsList() {
   return (
     <ProductsListContainer>
-      {productsList.map((product) => {
-        return <ProductCard key={product.id} product={product} />
-      })}
+      <h2>Nossos cafés</h2>
+
+      <div>
+        {productsList.map((product) => {
+          return <ProductCard key={product.id} product={product} />
+        })}
+      </div>
     </ProductsListContainer>
   )
 }

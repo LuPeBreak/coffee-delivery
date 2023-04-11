@@ -16,6 +16,8 @@ export const HeaderContainer = styled.header`
       width: 9rem;
       height: 2.375rem;
 
+      border-radius: 6px;
+
       padding: 0.5rem;
       display: flex;
       gap: 0.25rem;
@@ -43,6 +45,8 @@ export const HeaderContainer = styled.header`
       color: ${(props) => props.theme['yellow-dark']};
 
       position: relative;
+
+      border-radius: 6px;
       span {
         position: absolute;
         top: -0.5rem;

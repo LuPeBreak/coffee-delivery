@@ -5,7 +5,7 @@ import {
 } from './styles'
 import homeImage from '../../assets/home-image.svg'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
-import { ProductsList } from './ProductsList'
+import { ProductsList } from './components/ProductsList'
 export function Home() {
   return (
     <HomeContainer>

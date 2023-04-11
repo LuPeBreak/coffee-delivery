@@ -1,6 +1,6 @@
-import { ProductCard } from './ProductCard'
-import { ProductsListContainer } from './styles'
+import { ProductCard } from '../ProductCard'
 import { productsList } from './productsList'
+import { ProductsListContainer } from './styles'
 
 export function ProductsList() {
   return (

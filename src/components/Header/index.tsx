@@ -2,9 +2,11 @@ import { HeaderContainer } from './styles'
 import { ShoppingCart, MapPin } from 'phosphor-react'
 import logo from '../../assets/logo.svg'
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { OrderContext } from '../../contexts/OrderContext'
 
 export function Header() {
-  const cartItemsNumber = 3 // to do temporario para teste
+  const { numberOfProductsInCart } = useContext(OrderContext)
   return (
     <HeaderContainer>
       <img src={logo} alt="logo do coffe delivery" />
@@ -15,7 +17,9 @@ export function Header() {
         </div>
         <NavLink to={'/checkout'}>
           <ShoppingCart weight="fill" size={22} />
-          {cartItemsNumber > 0 ? <span>{cartItemsNumber}</span> : null}
+          {numberOfProductsInCart > 0 ? (
+            <span>{numberOfProductsInCart}</span>
+          ) : null}
         </NavLink>
       </nav>
     </HeaderContainer>

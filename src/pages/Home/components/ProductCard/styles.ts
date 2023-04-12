@@ -69,32 +69,10 @@ export const PurchaseDetailsContainer = styled.div`
     color: ${(props) => props.theme['base-card']};
     border: none;
     border-radius: 6px;
-  }
+    transition: background-color 0.2s;
 
-  div {
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-
-    gap: 0.25rem;
-
-    background-color: ${(props) => props.theme['base-button']};
-    border-radius: 6px;
-
-    button {
-      color: ${(props) => props.theme.purple};
-      background-color: ${(props) => props.theme['base-button']};
-      border: none;
+    &:hover {
+      background-color: ${(props) => props.theme.purple};
     }
-  }
-`
-
-export const ButtonWithIcon = styled.button`
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    cursor: pointer;
   }
 `

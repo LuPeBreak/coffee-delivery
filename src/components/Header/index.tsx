@@ -9,7 +9,9 @@ export function Header() {
   const { numberOfProductsInCart } = useContext(OrderContext)
   return (
     <HeaderContainer>
-      <img src={logo} alt="logo do coffe delivery" />
+      <NavLink to={'/'}>
+        <img src={logo} alt="logo do coffe delivery" />
+      </NavLink>
       <nav>
         <div>
           <MapPin weight="fill" size={22} />

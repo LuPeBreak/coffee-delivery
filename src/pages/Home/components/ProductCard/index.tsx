@@ -3,12 +3,13 @@ import {
   ProductCardContainer,
   PurchaseDetailsContainer,
   ProductDetailsContainer,
-  ButtonWithIcon,
   ProductCategoriesContainer,
 } from './styles'
 import { useContext, useState } from 'react'
 import { Product } from '../ProductsList/productsList'
 import { OrderContext } from '../../../../contexts/OrderContext'
+import { baseFormatter } from '../../../../utils/formatters'
+import { BaseButton, CounterContainer } from '../../../../styles/baseComponents'
 
 interface ProductCardProps {
   product: Product
@@ -18,10 +19,6 @@ export function ProductCard({ product }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1)
 
   const { addNewProduct } = useContext(OrderContext)
-
-  const formatter = new Intl.NumberFormat('pt-BR', {
-    minimumFractionDigits: 2,
-  })
 
   function addQuantity() {
     setQuantity((state) => {
@@ -54,23 +51,23 @@ export function ProductCard({ product }: ProductCardProps) {
       <span>{product.description}</span>
       <ProductDetailsContainer>
         <div>
-          R$ <span>{formatter.format(product.price)}</span>
+          R$ <span>{baseFormatter.format(product.price)}</span>
         </div>
         <PurchaseDetailsContainer>
-          <div>
-            <ButtonWithIcon onClick={subtractQuantity}>
+          <CounterContainer>
+            <BaseButton onClick={subtractQuantity}>
               <Minus weight="bold" size={14} />
-            </ButtonWithIcon>
+            </BaseButton>
 
             {quantity}
 
-            <ButtonWithIcon onClick={addQuantity}>
+            <BaseButton onClick={addQuantity}>
               <Plus weight="bold" size={14} />
-            </ButtonWithIcon>
-          </div>
-          <ButtonWithIcon onClick={handleAddProductToCart}>
+            </BaseButton>
+          </CounterContainer>
+          <BaseButton onClick={handleAddProductToCart}>
             <ShoppingCart weight="fill" size={22} />
-          </ButtonWithIcon>
+          </BaseButton>
         </PurchaseDetailsContainer>
       </ProductDetailsContainer>
     </ProductCardContainer>

@@ -72,8 +72,6 @@ export function OrderContextProvider({ children }: CyclesContextProviderProps) {
     dispatch(addNewCycleAction(newProductInCart))
   }
 
-  console.log(productsInCartState)
-
   return (
     <OrderContext.Provider
       value={{

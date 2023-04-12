@@ -63,7 +63,7 @@ export const HeaderContainer = styled.header`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     padding: 2rem;
   }
 `

@@ -10,6 +10,10 @@ import {
 import { OrderContext } from '../../contexts/OrderContext'
 import { currencyFormatter } from '../../utils/formatters'
 import { ProductInCartCard } from './components/ProductInCartCard'
+import { AdressForm } from './components/AdressForm'
+import { TitleWithIcon } from './components/TitleWithIcon'
+import { CurrencyDollar, MapPinLine } from 'phosphor-react'
+import { defaultTheme } from '../../styles/themes/default'
 
 export function Checkout() {
   const { productsInCartState, totalOrderValue, deliveryTax } =
@@ -19,8 +23,24 @@ export function Checkout() {
       <form action="">
         <FormContainer>
           <h3>Complete seu pedido</h3>
-          <div>address</div>
-          <div>payment method</div>
+          <div>
+            <TitleWithIcon
+              title="Endereço de Entrega"
+              subTitle="Informe o endereço onde deseja receber seu pedido"
+              icon={
+                <MapPinLine size={22} color={defaultTheme['yellow-dark']} />
+              }
+            />
+            <AdressForm />
+          </div>
+          <div>
+            <TitleWithIcon
+              title="Pagamento"
+              subTitle="O pagamento é feito na entrega. Escolha a forma que deseja pagar"
+              icon={<CurrencyDollar size={22} color={defaultTheme.purple} />}
+            />
+            payment method
+          </div>
         </FormContainer>
         <ProductSumamaryContainer>
           <h3>Cafés selecionados</h3>

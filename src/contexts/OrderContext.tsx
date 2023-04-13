@@ -20,7 +20,7 @@ interface Address {
   cep: string
   rua: string
   numero: string
-  complemento?: string
+  complemento: string
   bairro: string
   cidade: string
   uf: string
@@ -84,6 +84,7 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
     cep: '',
     rua: '',
     numero: '',
+    complemento: '',
     bairro: '',
     cidade: '',
     uf: '',

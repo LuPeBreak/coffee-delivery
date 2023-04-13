@@ -4,7 +4,11 @@ import {
   productsInCartReducer,
 } from '../reducers/productsInCart/reducer'
 import { Product } from '../pages/Home/components/ProductsList/productsList'
-import { addNewCycleAction } from '../reducers/productsInCart/actions'
+import {
+  addNewProductAction,
+  changeProductQuantityAction,
+  removeProductFromCartAction,
+} from '../reducers/productsInCart/actions'
 
 interface Address {
   cep: string
@@ -30,10 +34,12 @@ interface OrderContextType {
   productsInCartState: ProductState[]
   paymentMethod: PaymentMethod | null
   address: Address
-  taxaDeEntrega: number
+  deliveryTax: number
   totalOrderValue: number
   numberOfProductsInCart: number
   addNewProduct: ({ product, quantity }: newProductProps) => void
+  changeProductQuantity: (id: number, quantity: number) => void
+  removeProduct: (id: number) => void
 }
 
 export const OrderContext = createContext({} as OrderContextType)
@@ -45,6 +51,7 @@ interface CyclesContextProviderProps {
 export function OrderContextProvider({ children }: CyclesContextProviderProps) {
   const [productsInCartState, dispatch] = useReducer(productsInCartReducer, [])
 
+  // eslint-disable-next-line no-unused-vars
   const [address, setAddress] = useState({
     cep: '',
     rua: '',
@@ -53,13 +60,15 @@ export function OrderContextProvider({ children }: CyclesContextProviderProps) {
     cidade: '',
     uf: '',
   })
+  // eslint-disable-next-line no-unused-vars
   const [paymentMethod, setPaymentMethod] = useState(null)
 
-  const taxaDeEntrega = 3.5
   const totalOrderValue = productsInCartState.reduce((total, product) => {
     return (total += product.price * product.quantity)
   }, 0)
   const numberOfProductsInCart = productsInCartState.length
+
+  const deliveryTax = numberOfProductsInCart >= 1 ? 3.5 : 0
 
   function addNewProduct({ product, quantity }: newProductProps) {
     const newProductInCart = {
@@ -69,7 +78,15 @@ export function OrderContextProvider({ children }: CyclesContextProviderProps) {
       price: product.price,
       imageURL: product.imageURL,
     }
-    dispatch(addNewCycleAction(newProductInCart))
+    dispatch(addNewProductAction(newProductInCart))
+  }
+
+  function changeProductQuantity(id: number, quantity: number) {
+    dispatch(changeProductQuantityAction(id, quantity))
+  }
+
+  function removeProduct(id: number) {
+    dispatch(removeProductFromCartAction(id))
   }
 
   return (
@@ -78,10 +95,12 @@ export function OrderContextProvider({ children }: CyclesContextProviderProps) {
         productsInCartState,
         address,
         paymentMethod,
-        taxaDeEntrega,
+        deliveryTax,
         totalOrderValue,
         numberOfProductsInCart,
         addNewProduct,
+        changeProductQuantity,
+        removeProduct,
       }}
     >
       {children}

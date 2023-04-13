@@ -12,7 +12,7 @@ import { currencyFormatter } from '../../utils/formatters'
 import { ProductInCartCard } from './components/ProductInCartCard'
 
 export function Checkout() {
-  const { productsInCartState, totalOrderValue, taxaDeEntrega } =
+  const { productsInCartState, totalOrderValue, deliveryTax } =
     useContext(OrderContext)
   return (
     <CheckoutContainer>
@@ -28,10 +28,10 @@ export function Checkout() {
             <div>
               {productsInCartState.map((product) => {
                 return (
-                  <>
-                    <ProductInCartCard key={product.id} product={product} />
-                    <Separator />
-                  </>
+                  <div key={product.id}>
+                    <ProductInCartCard product={product} />
+                    <Separator key={product.id} />
+                  </div>
                 )
               })}
             </div>
@@ -42,12 +42,12 @@ export function Checkout() {
               </div>
               <div>
                 <span>Entrega</span>
-                <span>{currencyFormatter.format(taxaDeEntrega)}</span>
+                <span>{currencyFormatter.format(deliveryTax)}</span>
               </div>
               <div>
                 <span>Total</span>
                 <span>
-                  {currencyFormatter.format(totalOrderValue + taxaDeEntrega)}
+                  {currencyFormatter.format(totalOrderValue + deliveryTax)}
                 </span>
               </div>
             </ProductSumamaryInfoContainer>

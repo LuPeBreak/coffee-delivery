@@ -1,20 +1,27 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import {
-  BaseButton,
-  CounterContainer,
-} from '../../../../styles/baseComponents'
+import { BaseButton, CounterContainer } from '../../../../styles/baseComponents'
 import { ProductInCartCardContainer } from './styles'
 import { ProductState } from '../../../../reducers/productsInCart/reducer'
 import { currencyFormatter } from '../../../../utils/formatters'
+import React, { useContext } from 'react'
+import { OrderContext } from '../../../../contexts/OrderContext'
 
 interface ProductInCartCardProps {
   product: ProductState
 }
 
 export function ProductInCartCard({ product }: ProductInCartCardProps) {
-  function addQuantity() {}
-  function subtractQuantity() {}
-  function handleRemoveProduct() {}
+  const { changeProductQuantity, removeProduct } = useContext(OrderContext)
+
+  function handleAddProductQuantity() {
+    changeProductQuantity(product.id, 1)
+  }
+  function handleSubtractProductQuantity() {
+    changeProductQuantity(product.id, -1)
+  }
+  function handleRemoveProduct() {
+    removeProduct(product.id)
+  }
 
   const totalValue = product.price * product.quantity
 
@@ -28,17 +35,17 @@ export function ProductInCartCard({ product }: ProductInCartCardProps) {
         </div>
         <div>
           <CounterContainer>
-            <BaseButton onClick={subtractQuantity}>
+            <BaseButton type="button" onClick={handleSubtractProductQuantity}>
               <Minus weight="bold" size={14} />
             </BaseButton>
 
             {product.quantity}
 
-            <BaseButton onClick={addQuantity}>
+            <BaseButton type="button" onClick={handleAddProductQuantity}>
               <Plus weight="bold" size={14} />
             </BaseButton>
           </CounterContainer>
-          <BaseButton onClick={handleRemoveProduct}>
+          <BaseButton type="button" onClick={handleRemoveProduct}>
             <Trash /> Remover
           </BaseButton>
         </div>

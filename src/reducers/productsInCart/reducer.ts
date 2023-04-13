@@ -23,6 +23,30 @@ export function productsInCartReducer(state: ProductState[], action: any) {
         }
       })
     }
+    case ActionTypes.CHANGE_PRODUCT_QUANTITY: {
+      const productIndex = state.findIndex(
+        (product) => product.id === action.payload.id,
+      )
+      const isProductInCart = productIndex >= 0
+      const newProductQuantity =
+        state[productIndex].quantity + action.payload.quantity
+      return produce(state, (draft) => {
+        if (isProductInCart && newProductQuantity >= 1) {
+          draft[productIndex].quantity = newProductQuantity
+        }
+      })
+    }
+    case ActionTypes.REMOVE_PRODUCT_FROM_CART: {
+      const productIndex = state.findIndex(
+        (product) => product.id === action.payload.id,
+      )
+      const isProductInCart = productIndex >= 0
+      return produce(state, (draft) => {
+        if (isProductInCart) {
+          draft.splice(productIndex, 1)
+        }
+      })
+    }
     default:
       return state
   }

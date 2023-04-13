@@ -20,12 +20,12 @@ export function ProductCard({ product }: ProductCardProps) {
 
   const { addNewProduct } = useContext(OrderContext)
 
-  function addQuantity() {
+  function handleAddQuantity() {
     setQuantity((state) => {
       return state + 1
     })
   }
-  function subtractQuantity() {
+  function HandleSubtractQuantity() {
     setQuantity((state) => {
       if (quantity > 1) return state - 1
       return state
@@ -55,13 +55,13 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
         <PurchaseDetailsContainer>
           <CounterContainer>
-            <BaseButton onClick={subtractQuantity}>
+            <BaseButton onClick={HandleSubtractQuantity}>
               <Minus weight="bold" size={14} />
             </BaseButton>
 
             {quantity}
 
-            <BaseButton onClick={addQuantity}>
+            <BaseButton onClick={handleAddQuantity}>
               <Plus weight="bold" size={14} />
             </BaseButton>
           </CounterContainer>

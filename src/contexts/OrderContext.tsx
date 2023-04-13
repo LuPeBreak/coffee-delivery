@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useReducer, useState } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import {
   ProductState,
   productsInCartReducer,
@@ -44,12 +50,34 @@ interface OrderContextType {
 
 export const OrderContext = createContext({} as OrderContextType)
 
-interface CyclesContextProviderProps {
+interface OrderContextProviderProps {
   children: ReactNode
 }
 
-export function OrderContextProvider({ children }: CyclesContextProviderProps) {
-  const [productsInCartState, dispatch] = useReducer(productsInCartReducer, [])
+export function OrderContextProvider({ children }: OrderContextProviderProps) {
+  const aplicationName = '@coffe-delivery'
+  const aplicationVersion = '1.0.0'
+  const [productsInCartState, dispatch] = useReducer(
+    productsInCartReducer,
+    [],
+    (initialState) => {
+      const storedStateAsJSON = localStorage.getItem(
+        `${aplicationName}:products-in-cart-state-${aplicationVersion}`,
+      )
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+      return initialState
+    },
+  )
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(productsInCartState)
+    localStorage.setItem(
+      `${aplicationName}:products-in-cart-state-${aplicationVersion}`,
+      stateJSON,
+    )
+  }, [productsInCartState])
 
   // eslint-disable-next-line no-unused-vars
   const [address, setAddress] = useState({

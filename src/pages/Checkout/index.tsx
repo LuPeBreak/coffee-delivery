@@ -17,6 +17,8 @@ import { AdressForm } from './components/AdressForm'
 import { TitleWithIcon } from './components/TitleWithIcon'
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { defaultTheme } from '../../styles/themes/default'
+import { PaymentMethodForm } from './components/PaymentMethodForm'
+import { useNavigate } from 'react-router-dom'
 
 const orderFormValidationSchema = zod.object({
   cep: zod
@@ -47,6 +49,8 @@ export function Checkout() {
     savePaymentMethod,
   } = useContext(OrderContext)
 
+  const navigate = useNavigate()
+
   const orderForm = useForm<OrderFormData>({
     resolver: zodResolver(orderFormValidationSchema),
     defaultValues: {
@@ -66,6 +70,7 @@ export function Checkout() {
     saveAdress(data)
     savePaymentMethod(data)
     reset()
+    navigate('/purchase-completed')
   }
 
   return (
@@ -90,7 +95,7 @@ export function Checkout() {
                 subTitle="O pagamento é feito na entrega. Escolha a forma que deseja pagar"
                 icon={<CurrencyDollar size={22} color={defaultTheme.purple} />}
               />
-              payment method
+              <PaymentMethodForm />
             </div>
           </FormContainer>
         </FormProvider>

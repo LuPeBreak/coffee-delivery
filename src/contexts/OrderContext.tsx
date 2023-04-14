@@ -16,16 +16,6 @@ import {
   removeProductFromCartAction,
 } from '../reducers/productsInCart/actions'
 
-interface Address {
-  cep: string
-  rua: string
-  numero: string
-  complemento: string
-  bairro: string
-  cidade: string
-  uf: string
-}
-
 interface newProductProps {
   product: Product
   quantity: number
@@ -35,6 +25,20 @@ export type PaymentMethod =
   | 'cartão de credito'
   | 'cartão de débito'
   | 'dinheiro'
+
+interface Address {
+  cep: string
+  street: string
+  number: string
+  complement?: string
+  neighborhood: string
+  city: string
+  uf: string
+}
+
+interface FormDataProps extends Address {
+  paymentMethod: PaymentMethod | null
+}
 
 interface OrderContextType {
   productsInCartState: ProductState[]
@@ -46,6 +50,8 @@ interface OrderContextType {
   addNewProduct: ({ product, quantity }: newProductProps) => void
   changeProductQuantity: (id: number, quantity: number) => void
   removeProduct: (id: number) => void
+  saveAdress: (formData: FormDataProps) => void
+  savePaymentMethod: (formData: FormDataProps) => void
 }
 
 export const OrderContext = createContext({} as OrderContextType)
@@ -79,18 +85,16 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
     )
   }, [productsInCartState])
 
-  // eslint-disable-next-line no-unused-vars
-  const [address, setAddress] = useState({
+  const [address, setAddress] = useState<Address>({
     cep: '',
-    rua: '',
-    numero: '',
-    complemento: '',
-    bairro: '',
-    cidade: '',
+    street: '',
+    number: '',
+    complement: '',
+    neighborhood: '',
+    city: '',
     uf: '',
   })
-  // eslint-disable-next-line no-unused-vars
-  const [paymentMethod, setPaymentMethod] = useState(null)
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null)
 
   const totalOrderValue = productsInCartState.reduce((total, product) => {
     return (total += product.price * product.quantity)
@@ -118,6 +122,24 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
     dispatch(removeProductFromCartAction(id))
   }
 
+  function saveAdress(formData: FormDataProps) {
+    setAddress({
+      cep: formData.cep,
+      street: formData.street,
+      number: formData.number,
+      neighborhood: formData.neighborhood,
+      city: formData.city,
+      uf: formData.uf,
+      complement: formData.complement,
+    })
+  }
+
+  function savePaymentMethod(formData: FormDataProps) {
+    setPaymentMethod(formData.paymentMethod)
+  }
+
+  console.log(address, paymentMethod)
+
   return (
     <OrderContext.Provider
       value={{
@@ -130,6 +152,8 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
         addNewProduct,
         changeProductQuantity,
         removeProduct,
+        saveAdress,
+        savePaymentMethod,
       }}
     >
       {children}

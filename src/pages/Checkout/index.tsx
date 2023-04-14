@@ -1,4 +1,7 @@
 import { useContext } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
 import {
   ButtonLabel,
   CheckoutContainer,
@@ -15,33 +18,82 @@ import { TitleWithIcon } from './components/TitleWithIcon'
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { defaultTheme } from '../../styles/themes/default'
 
+const orderFormValidationSchema = zod.object({
+  cep: zod
+    .string()
+    .max(8, 'Informe o cep correto')
+    .min(8, 'Informe o cep correto'),
+  street: zod.string().min(1, 'informe a rua'),
+  number: zod.string().min(1, 'informe o numero'),
+  complement: zod.string().optional(),
+  neighborhood: zod.string().min(1, 'informe o bairro'),
+  city: zod.string().min(1, 'informe a cidade'),
+  uf: zod.string().min(1, 'informe o estado (UF)'),
+  paymentMethod: zod.enum([
+    'cartão de credito',
+    'cartão de débito',
+    'dinheiro',
+  ]),
+})
+
+type OrderFormData = zod.infer<typeof orderFormValidationSchema>
+
 export function Checkout() {
-  const { productsInCartState, totalOrderValue, deliveryTax } =
-    useContext(OrderContext)
+  const {
+    productsInCartState,
+    totalOrderValue,
+    deliveryTax,
+    saveAdress,
+    savePaymentMethod,
+  } = useContext(OrderContext)
+
+  const orderForm = useForm<OrderFormData>({
+    resolver: zodResolver(orderFormValidationSchema),
+    defaultValues: {
+      cep: '',
+      street: '',
+      number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      uf: '',
+      paymentMethod: undefined,
+    },
+  })
+  const { handleSubmit, reset } = orderForm
+
+  function handleCompleteOrder(data: OrderFormData) {
+    saveAdress(data)
+    savePaymentMethod(data)
+    reset()
+  }
+
   return (
     <CheckoutContainer>
-      <form action="">
-        <FormContainer>
-          <h3>Complete seu pedido</h3>
-          <div>
-            <TitleWithIcon
-              title="Endereço de Entrega"
-              subTitle="Informe o endereço onde deseja receber seu pedido"
-              icon={
-                <MapPinLine size={22} color={defaultTheme['yellow-dark']} />
-              }
-            />
-            <AdressForm />
-          </div>
-          <div>
-            <TitleWithIcon
-              title="Pagamento"
-              subTitle="O pagamento é feito na entrega. Escolha a forma que deseja pagar"
-              icon={<CurrencyDollar size={22} color={defaultTheme.purple} />}
-            />
-            payment method
-          </div>
-        </FormContainer>
+      <form onSubmit={handleSubmit(handleCompleteOrder)}>
+        <FormProvider {...orderForm}>
+          <FormContainer>
+            <h3>Complete seu pedido</h3>
+            <div>
+              <TitleWithIcon
+                title="Endereço de Entrega"
+                subTitle="Informe o endereço onde deseja receber seu pedido"
+                icon={
+                  <MapPinLine size={22} color={defaultTheme['yellow-dark']} />
+                }
+              />
+              <AdressForm />
+            </div>
+            <div>
+              <TitleWithIcon
+                title="Pagamento"
+                subTitle="O pagamento é feito na entrega. Escolha a forma que deseja pagar"
+                icon={<CurrencyDollar size={22} color={defaultTheme.purple} />}
+              />
+              payment method
+            </div>
+          </FormContainer>
+        </FormProvider>
         <ProductSumamaryContainer>
           <h3>Cafés selecionados</h3>
           <div>

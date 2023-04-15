@@ -1,8 +1,7 @@
 <h1 align="center"> Coffe Delivery </h1>
 
 <p align="center">
-  Voce pode encontrar demo do projeto no github pages nesse <a href="https://lupebreak.github.io/coffee-delivery/">Link</a> ( TO DO )
-</p>
+  Voce pode encontrar demo do projeto no github pages nesse <a href="https://lupebreak.github.io/coffee-delivery/">Link</a>
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;

@@ -6,6 +6,8 @@ import {
 import homeImage from '../../assets/home-image.svg'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { ProductsList } from './components/ProductsList'
+import { RoundIconContainer } from '../../styles/baseComponents'
+import { defaultTheme } from '../../styles/themes/default'
 export function Home() {
   return (
     <HomeContainer>
@@ -20,18 +22,28 @@ export function Home() {
           </header>
           <div>
             <span>
-              <ShoppingCart weight="fill" size={32} /> Compra simples e segura
+              <RoundIconContainer backgroundColor={defaultTheme['yellow-dark']}>
+                <ShoppingCart weight="fill" size={16} />
+              </RoundIconContainer>
+              Compra simples e segura
             </span>
             <span>
-              <Package weight="fill" size={32} /> Embalagem mantém o café
-              intacto
+              <RoundIconContainer backgroundColor={defaultTheme['base-text']}>
+                <Package weight="fill" size={16} />
+              </RoundIconContainer>
+              Embalagem mantém o café intacto
             </span>
             <span>
-              <Timer weight="fill" size={32} /> Entrega rápida e rastreada
+              <RoundIconContainer backgroundColor={defaultTheme.yellow}>
+                <Timer weight="fill" size={16} />
+              </RoundIconContainer>
+              Entrega rápida e rastreada
             </span>
             <span>
-              <Coffee weight="fill" size={32} /> O café chega fresquinho até
-              você
+              <RoundIconContainer backgroundColor={defaultTheme.purple}>
+                <Coffee weight="fill" size={16} />
+              </RoundIconContainer>
+              O café chega fresquinho até você
             </span>
           </div>
         </HomeInfoContainer>

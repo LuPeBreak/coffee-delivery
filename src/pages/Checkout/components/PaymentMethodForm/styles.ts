@@ -38,6 +38,10 @@ export const CardOptionContainer = styled.label`
     }
   }
 
+  input:invalid + div {
+    background: #000;
+  }
+
   input:checked + div {
     background-color: ${(props) => props.theme['purple-light']};
     color: ${(props) => props.theme['base-text']};

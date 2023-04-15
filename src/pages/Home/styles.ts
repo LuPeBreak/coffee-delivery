@@ -76,26 +76,6 @@ export const HomeInfoContainer = styled.div`
       display: flex;
       align-items: center;
       gap: 0.75rem;
-
-      svg {
-        border-radius: 50%;
-        padding: 0.5rem;
-        align-self: start;
-        color: ${(props) => props.theme.background};
-      }
-
-      &:nth-child(1) svg {
-        background-color: ${(props) => props.theme['yellow-dark']};
-      }
-      &:nth-child(2) svg {
-        background-color: ${(props) => props.theme['base-text']};
-      }
-      &:nth-child(3) svg {
-        background-color: ${(props) => props.theme.yellow};
-      }
-      &:nth-child(4) svg {
-        background-color: ${(props) => props.theme.purple};
-      }
     }
   }
 `

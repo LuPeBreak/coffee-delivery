@@ -5,6 +5,7 @@ export enum ActionTypes {
   ADD_NEW_PRODUCT_TO_CART = 'ADD_NEW_PRODUCT_TO_CART',
   CHANGE_PRODUCT_QUANTITY = 'CHANGE_PRODUCT_QUANTITY',
   REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART',
+  CLEAR_CART = 'CLEAR_CART',
 }
 
 export function addNewProductAction(newProduct: ProductState) {
@@ -32,5 +33,10 @@ export function removeProductFromCartAction(id: number) {
     payload: {
       id,
     },
+  }
+}
+export function clearCartAction() {
+  return {
+    type: ActionTypes.CLEAR_CART,
   }
 }

@@ -13,6 +13,7 @@ import { Product } from '../pages/Home/components/ProductsList/productsList'
 import {
   addNewProductAction,
   changeProductQuantityAction,
+  clearCartAction,
   removeProductFromCartAction,
 } from '../reducers/productsInCart/actions'
 
@@ -52,6 +53,7 @@ interface OrderContextType {
   removeProduct: (id: number) => void
   saveAdress: (formData: FormDataProps) => void
   savePaymentMethod: (formData: FormDataProps) => void
+  clearCart: () => void
 }
 
 export const OrderContext = createContext({} as OrderContextType)
@@ -138,6 +140,10 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
     setPaymentMethod(formData.paymentMethod)
   }
 
+  function clearCart() {
+    dispatch(clearCartAction())
+  }
+
   console.log(address, paymentMethod)
 
   return (
@@ -154,6 +160,7 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
         removeProduct,
         saveAdress,
         savePaymentMethod,
+        clearCart,
       }}
     >
       {children}

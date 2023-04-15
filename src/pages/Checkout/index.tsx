@@ -47,6 +47,7 @@ export function Checkout() {
     deliveryTax,
     saveAdress,
     savePaymentMethod,
+    clearCart,
   } = useContext(OrderContext)
 
   const navigate = useNavigate()
@@ -67,10 +68,13 @@ export function Checkout() {
   const { handleSubmit, reset } = orderForm
 
   function handleCompleteOrder(data: OrderFormData) {
-    saveAdress(data)
-    savePaymentMethod(data)
-    reset()
-    navigate('/purchase-completed')
+    if (productsInCartState.length) {
+      saveAdress(data)
+      savePaymentMethod(data)
+      reset()
+      clearCart()
+      navigate('/purchase-completed')
+    }
   }
 
   return (

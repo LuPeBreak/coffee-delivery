@@ -31,3 +31,17 @@ export const CounterContainer = styled.div`
     }
   }
 `
+
+interface RoundIconContainerProps {
+  backgroundColor?: string
+}
+export const RoundIconContainer = styled.div<RoundIconContainerProps>`
+  color: ${(props) => props.theme.background};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : props.theme.purple};
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+`

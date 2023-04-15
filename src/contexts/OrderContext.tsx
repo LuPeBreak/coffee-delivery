@@ -144,8 +144,6 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
     dispatch(clearCartAction())
   }
 
-  console.log(address, paymentMethod)
-
   return (
     <OrderContext.Provider
       value={{

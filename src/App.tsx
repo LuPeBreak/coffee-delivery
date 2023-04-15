@@ -8,7 +8,7 @@ import { OrderContextProvider } from './contexts/OrderContext'
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
+      <BrowserRouter basename="/coffee-delivery">
         <OrderContextProvider>
           <Router />
         </OrderContextProvider>

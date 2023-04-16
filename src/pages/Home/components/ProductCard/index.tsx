@@ -26,10 +26,9 @@ export function ProductCard({ product }: ProductCardProps) {
     })
   }
   function HandleSubtractQuantity() {
-    setQuantity((state) => {
-      if (quantity > 1) return state - 1
-      return state
-    })
+    if (quantity > 1) {
+      setQuantity((state) => state - 1)
+    }
   }
 
   function handleAddProductToCart() {

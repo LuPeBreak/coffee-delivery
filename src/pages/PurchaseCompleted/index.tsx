@@ -40,7 +40,7 @@ export function PurchaseCompleted() {
             </RoundIconContainer>
             <span>
               <p>Previsão de entrega</p>
-              <p>20 min - 30 min</p>
+              <strong>20 min - 30 min</strong>
             </span>
           </div>
           {paymentMethod ? (

@@ -16,7 +16,7 @@
 <br>
 
 <p align="center">
-  <img alt="Foto da pagina To Do List" src=".github/project.png" width="100%">
+  <img alt="Foto da pagina Coffe Delivery" src=".github/project.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias
@@ -39,4 +39,4 @@ Esse projeto está sob a licença MIT.
 
 ---
 
-Feito com ♥ by [LuPeBreak](https://github.com/LuPeBreak/) como um desafio do Ignite ReactJS da [RocketSeat](https://www.rocketseat.com.br/) utilizando o [design do figma](https://www.figma.com/file/5yT9ZzZmRQRS4yivGGB3pl/Coffee-Delivery/duplicate) como objetivo sem qualquer tutorial.
+Feito com ♥ by [LuPeBreak](https://github.com/LuPeBreak/) como um desafio do Ignite ReactJS da [RocketSeat](https://www.rocketseat.com.br/) utilizando o [design do figma](https://www.figma.com/file/5yT9ZzZmRQRS4yivGGB3pl/Coffee-Delivery/duplicate) como objetivo, sem qualquer tutorial.

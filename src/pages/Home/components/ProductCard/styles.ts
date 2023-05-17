@@ -16,7 +16,7 @@ export const ProductCardContainer = styled.div`
     max-width: 7.5rem;
   }
 
-  & > h1 {
+  & > h2 {
     color: ${(props) => props.theme['base-subtitle']};
     margin-bottom: 0.5rem;
   }

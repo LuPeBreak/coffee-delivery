@@ -46,7 +46,7 @@ export function ProductCard({ product }: ProductCardProps) {
           return <span key={category}>{category}</span>
         })}
       </ProductCategoriesContainer>
-      <h1>{product.title}</h1>
+      <h2>{product.title}</h2>
       <span>{product.description}</span>
       <ProductDetailsContainer>
         <div>
